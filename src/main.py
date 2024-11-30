@@ -51,11 +51,14 @@ def calculate_aic(data, orders, verbose=False):
     likelihood_ratios = calculate_likelihood_ratios(data, orders, verbose)
     eta = [-2 * math.log(likelihood_ratio) for likelihood_ratio in likelihood_ratios]
     aic = [eta[i] - 2 * (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) for i in orders[:-1]]
-    return aic
+    best_aic = aic.index(min(aic))
+    return (aic, best_aic)
 
+    
 def calculate_metrics(data, orders, verbose=False):
-    aic = calculate_aic(data, orders, verbose)
-    print(aic)
+    aic, best_aic = calculate_aic(data, orders, verbose)
+
+    print(aic, best_aic)
 
 def main():
     max_possible_order = 2
