@@ -35,36 +35,42 @@ def calculate_likelihoods(data, orders):
     
     return likelihoods
 
-def calculate_likelihood_ratios(data, orders):
+def calculate_likelihood_ratios(data, orders, return_likelihood=False):
     likelihoods = calculate_likelihoods(data, orders)
     likelihood_ratios = [likelihoods[i] / likelihoods[-1] for i in orders[:-1]]
+
+    if return_likelihood:
+        return likelihood_ratios, likelihoods[:-1]
+
     return likelihood_ratios
 
-def calculate_aic(data, orders):
-    k = orders[-1]
-    likelihood_ratios = calculate_likelihood_ratios(data, orders)
-    eta = [-2 * math.log(likelihood_ratio) for likelihood_ratio in likelihood_ratios]
-    aic = [eta[i] - 2 * (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) for i in orders[:-1]]
+def calculate_aic(eta, k):
+    aic = [eta[i] - 2 * (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) for i in range(0, k)]
     best_aic = aic.index(min(aic))
     return (aic, best_aic)
 
-def calculate_bic(data, orders):
-    k = orders[-1]
-    likelihood_ratios = calculate_likelihood_ratios(data, orders)
-    eta = [-2 * math.log(likelihood_ratio) for likelihood_ratio in likelihood_ratios]
-    bic = [eta[i] - (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) * len(data) for i in orders[:-1]]
+def calculate_bic(eta, k, sample_size):
+    bic = [eta[i] - (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) * sample_size for i in range(0, k)]
     best_bic = bic.index(min(bic))
     return (bic, best_bic)
 
 
 def calculate_metrics(data, orders, verbose=False):
-    aic, best_aic = calculate_aic(data, orders)
-    bic, best_bic = calculate_bic(data, orders)
+    k = orders[-1]
+    sample_size = len(data)
+    likelihood_ratios, likelihoods = calculate_likelihood_ratios(data, orders, return_likelihood=True)
+    eta = [-2 * math.log(likelihood_ratio) for likelihood_ratio in likelihood_ratios]
+
+    aic, best_aic = calculate_aic(eta, k)
+    bic, best_bic = calculate_bic(eta, k, sample_size)
 
     if verbose:
-        print("Order \t AIC \t\t BIC")
+        print("Order \t Likelihoods \t Lhd Ratios \t AIC \t\t BIC")
         for order in orders[:-1]:
-            print(f"{order} \t {round(aic[order], 3)} \t {round(bic[order], 3)}")
+            print(f"{order} \t {likelihoods[order]:.3e} \t {likelihood_ratios[order]:.3e} \t {aic[order]:.3e} \t {bic[order]:.3e}")
+        
+        print(f"\nBest AIC Solution: Order {best_aic}")
+        print(f"Best BIC Solution: Order {best_bic}")
 
 
 def main():
