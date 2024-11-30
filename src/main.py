@@ -1,5 +1,8 @@
 import csv
+import math
 from collections import Counter
+
+NUMBER_OF_STATES = 3
 
 def read_csv(file_path):
     data = []
@@ -25,23 +28,40 @@ def calculate_likelihood(data, order):
     return likelihood
 
 def calculate_likelihoods(data, orders, verbose=False):
-    likelihoods = {}
+    likelihoods = []
 
     for order in orders:
-        likelihoods[order] = calculate_likelihood(data, order)
+        likelihoods.append(calculate_likelihood(data, order))
 
     if verbose:
         print("Order Likelihood")
-        for order in orders:
+        for order in orders[:-1]:
             print(f"{order}     {likelihoods[order]}")
 
     
     return likelihoods
 
+def calculate_likelihood_ratios(data, orders, verbose=False):
+    likelihoods = calculate_likelihoods(data, orders, verbose)
+    likelihood_ratios = [likelihoods[i] / likelihoods[-1] for i in orders[:-1]]
+    return likelihood_ratios
+
+def calculate_aic(data, orders, verbose=False):
+    k = orders[-1]
+    likelihood_ratios = calculate_likelihood_ratios(data, orders, verbose)
+    eta = [-2 * math.log(likelihood_ratio) for likelihood_ratio in likelihood_ratios]
+    aic = [eta[i] - 2 * (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) for i in orders[:-1]]
+    return aic
+
+def calculate_metrics(data, orders, verbose=False):
+    aic = calculate_aic(data, orders, verbose)
+    print(aic)
+
 def main():
-    possible_orders = [0, 1, 2]
+    max_possible_order = 2
+    possible_orders = [i for i in range(0, max_possible_order + 2)]
     data = read_csv("data/group01.csv")
-    calculate_likelihoods(data, possible_orders, verbose=True)
+    calculate_metrics(data, possible_orders, True)
 
 if __name__ == "__main__":
     main()
