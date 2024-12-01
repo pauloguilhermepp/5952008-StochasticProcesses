@@ -1,0 +1,138 @@
+CSV Path: data/labeled/order0/ex0.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -6.197e+01      -1.777e+01      -6.847e+01      -2.050e+02
+1        -5.498e+01      -1.078e+01      -7.444e+01      -2.004e+02
+2        -4.742e+01      -3.217e+00      -6.557e+01      -1.601e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order0/ex1.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -7.014e+01      -1.890e+01      -6.620e+01      -2.027e+02
+1        -6.668e+01      -1.544e+01      -6.513e+01      -1.911e+02
+2        -6.264e+01      -1.140e+01      -4.919e+01      -1.437e+02
+
+Best AIC Solution: Order 0
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order0/ex2.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -7.305e+01      -2.370e+01      -5.660e+01      -1.931e+02
+1        -6.847e+01      -1.913e+01      -5.774e+01      -1.837e+02
+2        -6.096e+01      -1.162e+01      -4.876e+01      -1.433e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order0/ex3.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -6.843e+01      -1.620e+01      -7.159e+01      -2.081e+02
+1        -6.460e+01      -1.237e+01      -7.126e+01      -1.973e+02
+2        -5.600e+01      -3.769e+00      -6.446e+01      -1.590e+02
+
+Best AIC Solution: Order 0
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order1/ex0.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -4.510e+01      -3.144e+01      -4.112e+01      -1.776e+02
+1        -1.843e+01      -4.774e+00      -8.645e+01      -2.125e+02
+2        -1.509e+01      -1.433e+00      -6.913e+01      -1.636e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 1
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order1/ex1.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -1.020e+02      -7.735e+01      5.070e+01       -8.579e+01
+1        -2.947e+01      -4.794e+00      -8.641e+01      -2.124e+02
+2        -2.558e+01      -9.098e-01      -7.018e+01      -1.647e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 1
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order1/ex2.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -5.490e+01      -4.490e+01      -1.421e+01      -1.507e+02
+1        -1.703e+01      -7.031e+00      -8.194e+01      -2.079e+02
+2        -1.355e+01      -3.546e+00      -6.491e+01      -1.594e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 1
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order1/ex3.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -5.620e+00      -5.620e+00      -2.760e+00      -2.113e+01
+1        0.000e+00       0.000e+00       -1.200e+01      -2.775e+01
+2        0.000e+00       0.000e+00       -8.000e+00      -1.850e+01
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 1
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order2/ex0.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -1.106e+02      -8.179e+01      5.958e+01       -7.692e+01
+1        -1.083e+02      -7.951e+01      6.302e+01       -6.297e+01
+2        -3.709e+01      -8.322e+00      -5.536e+01      -1.499e+02
+
+Best AIC Solution: Order 2
+Best BIC Solution: Order 2
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order2/ex1.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -1.112e+02      -9.628e+01      8.856e+01       -4.793e+01
+1        -1.069e+02      -9.198e+01      8.795e+01       -3.805e+01
+2        -1.576e+01      -8.055e-01      -7.039e+01      -1.649e+02
+
+Best AIC Solution: Order 2
+Best BIC Solution: Order 2
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order2/ex2.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -9.950e+01      -7.697e+01      4.995e+01       -8.655e+01
+1        -8.625e+01      -6.372e+01      3.144e+01       -9.456e+01
+2        -2.275e+01      -2.197e-01      -7.156e+01      -1.661e+02
+
+Best AIC Solution: Order 2
+Best BIC Solution: Order 2
+----------------------------------------------------------------------------------------------------
+CSV Path: data/labeled/order2/ex3.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -1.119e+02      -9.195e+01      7.990e+01       -5.660e+01
+1        -1.100e+02      -9.012e+01      8.424e+01       -4.175e+01
+2        -2.028e+01      -3.693e-01      -7.126e+01      -1.658e+02
+
+Best AIC Solution: Order 2
+Best BIC Solution: Order 2
+----------------------------------------------------------------------------------------------------
+
+
+
+CSV Path: data/professor/group01.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -6.239e+01      -3.179e+01      -4.042e+01      -1.476e+02
+1        -5.467e+01      -2.408e+01      -4.784e+01      -1.467e+02
+2        -4.665e+01      -1.605e+01      -3.990e+01      -1.141e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
+CSV Path: data/professor/group02.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -6.182e+01      -3.141e+01      -4.118e+01      -1.483e+02
+1        -5.582e+01      -2.541e+01      -4.519e+01      -1.441e+02
+2        -5.127e+01      -2.086e+01      -3.028e+01      -1.045e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
+CSV Path: data/professor/group03.csv
+Order    Log Lhd         Log Lhd Rat     AIC             BIC
+0        -6.295e+01      -3.247e+01      -3.907e+01      -1.462e+02
+1        -5.513e+01      -2.465e+01      -4.669e+01      -1.456e+02
+2        -4.988e+01      -1.940e+01      -3.321e+01      -1.074e+02
+
+Best AIC Solution: Order 1
+Best BIC Solution: Order 0
+----------------------------------------------------------------------------------------------------
