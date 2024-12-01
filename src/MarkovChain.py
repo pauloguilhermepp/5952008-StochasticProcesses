@@ -2,6 +2,7 @@ import sys
 import csv
 import random
 
+
 class MarkovChain:
     def __init__(self, prob_matrix, random_seed=42):
         random.seed(random_seed)
@@ -17,7 +18,7 @@ class MarkovChain:
         if self.order == 0:
             previous_states = []
         else:
-            previous_states = previous_states[-self.order:]
+            previous_states = previous_states[-self.order :]
 
         element = self.prob_matrix
         for index in previous_states:
@@ -37,8 +38,10 @@ class MarkovChain:
                 return index
 
             index += 1
-        
-        print(f"WARNING: Impossible to get next state from \"{previous_states[-2]}, {previous_states[-1]}\"")
+
+        print(
+            f'WARNING: Impossible to get next state from "{previous_states[-2]}, {previous_states[-1]}"'
+        )
         sys.exit(-1)
 
     def run(self, initial_states, num_new_states, file_path=None):
@@ -57,10 +60,3 @@ class MarkovChain:
         with open(file_path, mode="w", newline="") as file:
             writer = csv.writer(file)
             writer.writerows([[num] for num in simulation])
-
-if __name__ == "__main__":
-    prob_matrix = [0.2, 0.5, 0.3]
-
-    mc = MarkovChain(prob_matrix)
-
-    simulation = mc.run(initial_states=[], num_new_states=80, file_path="data/labeled/order0/ex1.csv")
