@@ -17,15 +17,22 @@ def read_csv(file_path):
 def calculate_likelihood(data, order):
     sequences = [tuple(data[i:i + order + 1]) for i in range(len(data) - order)]
     frequency = Counter(sequences)
-    total = sum(frequency.values())
-    probability = {key: count / total for key, count in frequency.items()}
+
+    contexts = [tuple(data[i:i + order]) for i in range(len(data) - order)]
+    context_frequency = Counter(contexts)
+
+    probability = {
+        key: count / context_frequency[key[:-1]]
+        for key, count in frequency.items()
+    }
 
     likelihood = 1
     for i in range(len(data) - order):
         subsequence = tuple(data[i:i + order + 1])
-        likelihood *= probability.get(subsequence, 0)
+        likelihood *= probability.get(subsequence)
 
     return likelihood
+
 
 def calculate_likelihoods(data, orders):
     likelihoods = []
