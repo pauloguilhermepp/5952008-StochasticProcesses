@@ -14,7 +14,7 @@ def read_csv(file_path):
 
     return data
 
-def calculate_likelihood(data, order):
+def calculate_log_likelihood(data, order):
     sequences = [tuple(data[i:i + order + 1]) for i in range(len(data) - order)]
     frequency = Counter(sequences)
 
@@ -26,30 +26,30 @@ def calculate_likelihood(data, order):
         for key, count in frequency.items()
     }
 
-    likelihood = 1
+    log_likelihood = 0
     for i in range(len(data) - order):
         subsequence = tuple(data[i:i + order + 1])
-        likelihood *= probability.get(subsequence)
+        log_likelihood += math.log(probability.get(subsequence))
 
-    return likelihood
+    return log_likelihood
 
 
-def calculate_likelihoods(data, orders):
-    likelihoods = []
+def calculate_log_likelihoods(data, orders):
+    log_likelihoods = []
 
     for order in orders:
-        likelihoods.append(calculate_likelihood(data, order))
+        log_likelihoods.append(calculate_log_likelihood(data, order))
     
-    return likelihoods
+    return log_likelihoods
 
-def calculate_likelihood_ratios(data, orders, return_likelihood=False):
-    likelihoods = calculate_likelihoods(data, orders)
-    likelihood_ratios = [likelihoods[i] / likelihoods[-1] for i in orders[:-1]]
+def calculate_log_likelihood_ratio(data, orders, return_log_likelihood=False):
+    log_likelihoods = calculate_log_likelihoods(data, orders)
+    log_likelihood_ratio = [log_likelihoods[i] - log_likelihoods[-1] for i in orders[:-1]]
 
-    if return_likelihood:
-        return likelihood_ratios, likelihoods[:-1]
+    if return_log_likelihood:
+        return log_likelihood_ratio, log_likelihoods[:-1]
 
-    return likelihood_ratios
+    return log_likelihood_ratio
 
 def calculate_aic(eta, k):
     aic = [eta[i] - 2 * (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) for i in range(0, k)]
@@ -65,16 +65,16 @@ def calculate_bic(eta, k, sample_size):
 def calculate_metrics(data, orders, verbose=False):
     k = orders[-1]
     sample_size = len(data)
-    likelihood_ratios, likelihoods = calculate_likelihood_ratios(data, orders, return_likelihood=True)
-    eta = [-2 * math.log(likelihood_ratio) for likelihood_ratio in likelihood_ratios]
+    log_likelihood_ratio, log_likelihoods = calculate_log_likelihood_ratio(data, orders, return_log_likelihood=True)
+    eta = [-2 * log_likelihood_ratio for log_likelihood_ratio in log_likelihood_ratio]
 
     aic, best_aic = calculate_aic(eta, k)
     bic, best_bic = calculate_bic(eta, k, sample_size)
 
     if verbose:
-        print("Order \t Likelihoods \t Lhd Ratios \t AIC \t\t BIC")
+        print("Order \t Log Lhd \t Log Lhd Rat \t AIC \t\t BIC")
         for order in orders[:-1]:
-            print(f"{order} \t {likelihoods[order]:.3e} \t {likelihood_ratios[order]:.3e} \t {aic[order]:.3e} \t {bic[order]:.3e}")
+            print(f"{order} \t {log_likelihoods[order]:.3e} \t {log_likelihood_ratio[order]:.3e} \t {aic[order]:.3e} \t {bic[order]:.3e}")
         
         print(f"\nBest AIC Solution: Order {best_aic}")
         print(f"Best BIC Solution: Order {best_bic}")
@@ -83,7 +83,7 @@ def calculate_metrics(data, orders, verbose=False):
 def main():
     max_possible_order = 2
     possible_orders = [i for i in range(0, max_possible_order + 2)]
-    data = read_csv("data/labeled/order0/ex1.csv")
+    data = read_csv("data/labeled/order2/ex2.csv")
     calculate_metrics(data, possible_orders, True)
 
 if __name__ == "__main__":
