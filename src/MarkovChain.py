@@ -3,7 +3,8 @@ import csv
 import random
 
 class MarkovChain:
-    def __init__(self, prob_matrix):
+    def __init__(self, prob_matrix, random_seed=42):
+        random.seed(random_seed)
         self.prob_matrix = prob_matrix
         self.order = self.get_order(prob_matrix)
 
@@ -13,8 +14,11 @@ class MarkovChain:
         return -1
 
     def get_next_state_probs(self, previous_states):
-        previous_states = previous_states[-self.order:]
-        
+        if self.order == 0:
+            previous_states = []
+        else:
+            previous_states = previous_states[-self.order:]
+
         element = self.prob_matrix
         for index in previous_states:
             element = element[index]
@@ -48,8 +52,15 @@ class MarkovChain:
             self.save(simulation, file_path)
 
         return simulation
-    
+
     def save(self, simulation, file_path):
         with open(file_path, mode="w", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow(simulation)
+            writer.writerows([[num] for num in simulation])
+
+if __name__ == "__main__":
+    prob_matrix = [0.2, 0.5, 0.3]
+
+    mc = MarkovChain(prob_matrix)
+
+    simulation = mc.run(initial_states=[], num_new_states=80, file_path="data/labeled/order0/ex1.csv")

@@ -76,7 +76,7 @@ def calculate_metrics(data, orders, verbose=False):
 def main():
     max_possible_order = 2
     possible_orders = [i for i in range(0, max_possible_order + 2)]
-    data = read_csv("data/group01.csv")
+    data = read_csv("data/labeled/order0/ex1.csv")
     calculate_metrics(data, possible_orders, True)
 
 if __name__ == "__main__":
