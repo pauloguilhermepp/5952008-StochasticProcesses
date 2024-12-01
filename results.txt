@@ -106,9 +106,6 @@ Order    Log Lhd         Log Lhd Rat     AIC             BIC
 Best AIC Solution: Order 2
 Best BIC Solution: Order 2
 ----------------------------------------------------------------------------------------------------
-
-
-
 CSV Path: data/professor/group01.csv
 Order    Log Lhd         Log Lhd Rat     AIC             BIC
 0        -6.239e+01      -3.179e+01      -4.042e+01      -1.476e+02

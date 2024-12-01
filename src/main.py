@@ -18,8 +18,6 @@ def test_labeled_data():
             )
             print(100 * "-")
 
-    print(2 * "\n")
-
 
 def test_professor_data():
     groups = [1, 2, 3]
