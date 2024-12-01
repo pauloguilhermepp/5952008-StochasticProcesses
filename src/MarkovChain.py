@@ -4,8 +4,7 @@ import random
 
 
 class MarkovChain:
-    def __init__(self, prob_matrix, random_seed=42):
-        random.seed(random_seed)
+    def __init__(self, prob_matrix):
         self.prob_matrix = prob_matrix
         self.order = self.get_order(prob_matrix)
 
@@ -44,8 +43,10 @@ class MarkovChain:
         )
         sys.exit(-1)
 
-    def run(self, initial_states, num_new_states, file_path=None):
+    def run(self, initial_states, num_new_states, random_seed=42, file_path=None):
         simulation = initial_states
+
+        random.seed(random_seed)
 
         for _ in range(num_new_states):
             next_state = self.get_next_state(simulation)
@@ -60,3 +61,30 @@ class MarkovChain:
         with open(file_path, mode="w", newline="") as file:
             writer = csv.writer(file)
             writer.writerows([[num] for num in simulation])
+
+def main():
+    random_seed = 42
+    num_exp_per_mc = 4
+    prob_matrixes = [
+        [0.85, 0.10, 0.05],
+        [[0.85, 0.10, 0.05], [0.02, 0.97, 0.01], [0.07, 0.01, 0.92]],
+        [[[0.85, 0.10, 0.05], [0.02, 0.97, 0.01], [0.07, 0.01, 0.92]],
+         [[0.03, 0.95, 0.02], [0.08, 0.03, 0.89], [0.80, 0.15, 0.05]],
+         [[0.08, 0.02, 0.90], [0.97, 0.01, 0.02], [0.04, 0.93, 0.03]],]
+    ]
+
+    random.seed(random_seed)
+
+    for idx, prob_matrix in enumerate(prob_matrixes):
+        mc = MarkovChain(prob_matrix)
+
+        for experiment in range(0, num_exp_per_mc):
+            mc.run(
+                initial_states=[2, 1],
+                num_new_states=100,
+                random_seed=random.randint(0, 10**5),
+                file_path=f"data/labeled/order{idx}/ex{experiment}.csv",
+            )
+
+if __name__ == "__main__":
+    main()
