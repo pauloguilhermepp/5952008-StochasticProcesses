@@ -57,7 +57,7 @@ def calculate_aic(eta, k):
     return (aic, best_aic)
 
 def calculate_bic(eta, k, sample_size):
-    bic = [eta[i] - (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) * sample_size for i in range(0, k)]
+    bic = [eta[i] - (NUMBER_OF_STATES**k - NUMBER_OF_STATES**i) * (NUMBER_OF_STATES - 1) * math.log(sample_size) for i in range(0, k)]
     best_bic = bic.index(min(bic))
     return (bic, best_bic)
 
